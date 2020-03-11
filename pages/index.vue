@@ -21,6 +21,13 @@
           <input type="text" 
             :value="url_decode" />
         </div>
+        <div class="result-line md:flex md:items-center mb-6" >
+          <label>
+          HTML文字参照
+          </label>
+          <input type="text" 
+            :value="charactor_deref" />
+        </div>
       </div>
       <div id="encoded-area" class="border border-gray-100">
         <div class="result-line md:flex md:items-center mb-6" >
@@ -37,6 +44,27 @@
           <input type="text" 
             :value="url_encode" />
         </div>
+        <div class="result-line md:flex md:items-center mb-6" >
+          <label>
+          数値参照(10進)
+          </label>
+          <input type="text" 
+            :value="charactor_ref_by_10" />
+        </div>
+        <div class="result-line md:flex md:items-center mb-6" >
+          <label>
+          数値参照(16進)
+          </label>
+          <input type="text" 
+            :value="charactor_ref_by_16" />
+        </div>
+        <div class="result-line md:flex md:items-center mb-6" >
+          <label>
+          HTML実体参照
+          </label>
+          <input type="text" 
+            :value="charactor_ref_by_name" />
+        </div>
       </div>
       <ul id="footer" class="flex">
         <li class="mr-6">
@@ -49,6 +77,7 @@
 
 <script>
 import Logo from '~/components/Logo.vue'
+import he from 'he'
 function exec_or_errormessage(method){
   try{
     return method() 
@@ -74,11 +103,31 @@ export default {
     base64_decode: function(){
       return exec_or_errormessage( function(){ return window.atob(this.original_code) }.bind(this) )
     },
+    charactor_deref: function(){
+      return exec_or_errormessage( function(){ 
+        return he.decode(this.original_code) 
+      }.bind(this) )
+    },
     url_encode: function(){
       return exec_or_errormessage( function(){ return encodeURIComponent(this.original_code) }.bind(this) )
     },
     url_decode: function(){
       return exec_or_errormessage( function(){ return decodeURIComponent(this.original_code) }.bind(this) )
+    },
+    charactor_ref_by_10: function(){
+      return exec_or_errormessage( function(){ 
+        return he.encode(this.original_code, { 'decimal': true }) 
+      }.bind(this) )
+    },
+    charactor_ref_by_16: function(){
+      return exec_or_errormessage( function(){ 
+        return he.encode(this.original_code, {}) 
+      }.bind(this) )
+    },
+    charactor_ref_by_name: function(){
+      return exec_or_errormessage( function(){ 
+        return he.encode(this.original_code, { 'useNamedReferences': true }) 
+      }.bind(this) )
     },
   }
 }
