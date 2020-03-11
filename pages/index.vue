@@ -1,39 +1,85 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        encdecgeek
-      </h1>
-      <h2 class="subtitle">
-        My smashing Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+  <div class="container mx-auto">
+    <div class="mr-1">
+      <div id="title-area" class="flex mb-6" >
+        <logo id="title-logo" class="flex-none" />
+        <input v-model="original_code" type="text" placeholder="input text to encode/decode."
+          class="flex-grow shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
       </div>
+      <div id="decoded-area" class="border border-gray-100">
+        <div class="result-line" >
+          <label>
+            Base64 Decode
+          </label>
+          <input type="text" 
+            :value="base64_decode" />
+        </div>
+        <div class="result-line md:flex md:items-center mb-6" >
+          <label>
+            URL Decode
+          </label>
+          <input type="text" 
+            :value="url_decode" />
+        </div>
+      </div>
+      <div id="encoded-area" class="border border-gray-100">
+        <div class="result-line md:flex md:items-center mb-6" >
+          <label>
+            Base64 Encode
+          </label>
+          <input type="text" 
+            :value="base64_encode" />
+        </div>
+        <div class="result-line md:flex md:items-center mb-6" >
+          <label>
+            URL Encode
+          </label>
+          <input type="text" 
+            :value="url_encode" />
+        </div>
+      </div>
+      <ul id="footer" class="flex">
+        <li class="mr-6">
+          <a class="" href="https://twitter.com/mogya">@mogya</a>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
+function exec_or_errormessage(method){
+  try{
+    return method() 
+  }
+  catch(e){
+    return e.toString()
+  }
+}
 
 export default {
   components: {
     Logo
+  },
+  data () {
+    return {
+      original_code: '%E6%97%A5%E6%9C%AC%E8%AA%9E'
+    }
+  },
+  computed: {
+    base64_encode: function(){
+      return exec_or_errormessage( function(){ return window.btoa(this.original_code) }.bind(this) )
+    },
+    base64_decode: function(){
+      return exec_or_errormessage( function(){ return window.atob(this.original_code) }.bind(this) )
+    },
+    url_encode: function(){
+      return exec_or_errormessage( function(){ return encodeURIComponent(this.original_code) }.bind(this) )
+    },
+    url_decode: function(){
+      return exec_or_errormessage( function(){ return decodeURIComponent(this.original_code) }.bind(this) )
+    },
   }
 }
 </script>
@@ -44,34 +90,26 @@ export default {
   @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+#title-logo{
+  display: inline;
+  height: 2em;
+  margin-right: 0.5em;
+  vertical-align: text-bottom;
+  width: 2em;
 }
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+#title-area input{
+  display: inline;
 }
-
-.links {
-  padding-top: 15px;
+.result-line{
+  @apply mb-6 flex justify-center;
+}
+.result-line label{
+  @apply block text-gray-500 font-bold text-right pr-4;
+  width: 10em;
+  line-height: 2.25;
+}
+.result-line input{
+  @apply flex-1 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight;
 }
 </style>
