@@ -28,6 +28,13 @@
           <input type="text" 
             :value="charactor_deref" />
         </div>
+        <div class="result-line md:flex md:items-center mb-6" >
+          <label>
+          hex2bin(php)
+          </label>
+          <input type="text" 
+            :value="hex_to_bin" />
+        </div>
       </div>
       <div id="encoded-area" class="border border-gray-100">
         <div class="result-line md:flex md:items-center mb-6" >
@@ -65,6 +72,13 @@
           <input type="text" 
             :value="charactor_ref_by_name" />
         </div>
+        <div class="result-line md:flex md:items-center mb-6" >
+          <label>
+          bin2hex(php)
+          </label>
+          <input type="text" 
+            :value="bin_to_hex" />
+        </div>
       </div>
       <ul id="footer" class="flex">
         <li class="mr-6">
@@ -77,6 +91,7 @@
 
 <script>
 import Logo from '~/components/Logo.vue'
+import { bin2hex, hex2bin } from '~/assets/js/php'
 import he from 'he'
 function exec_or_errormessage(method){
   try{
@@ -108,6 +123,12 @@ export default {
         return he.decode(this.original_code) 
       }.bind(this) )
     },
+    bin_to_hex: function(){
+      return exec_or_errormessage( function(){ 
+        return bin2hex(this.original_code) 
+      }.bind(this) )
+    },
+
     url_encode: function(){
       return exec_or_errormessage( function(){ return encodeURIComponent(this.original_code) }.bind(this) )
     },
@@ -127,6 +148,11 @@ export default {
     charactor_ref_by_name: function(){
       return exec_or_errormessage( function(){ 
         return he.encode(this.original_code, { 'useNamedReferences': true }) 
+      }.bind(this) )
+    },
+    hex_to_bin: function(){
+      return exec_or_errormessage( function(){ 
+        return hex2bin(this.original_code) 
       }.bind(this) )
     },
   }
