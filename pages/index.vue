@@ -30,13 +30,6 @@
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
-          hex2bin(php)
-          </label>
-          <input type="text" 
-            :value="hex_to_bin" />
-        </div>
-        <div class="result-line md:flex md:items-center mb-6" >
-          <label>
           unicode escape
           </label>
           <input type="text" 
@@ -81,13 +74,6 @@
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
-          bin2hex(php)
-          </label>
-          <input type="text" 
-            :value="bin_to_hex" />
-        </div>
-        <div class="result-line md:flex md:items-center mb-6" >
-          <label>
           unicode escape
           </label>
           <input type="text" 
@@ -105,7 +91,6 @@
 
 <script>
 import Logo from '~/components/Logo.vue'
-import PHP from '~/assets/js/php'
 import HTMLEntities from 'he'
 import QRCode from 'qrcode'
 import Unicode from '~/assets/js/unicode'
@@ -140,11 +125,6 @@ export default {
         return HTMLEntities.decode(this.original_code) 
       }.bind(this) )
     },
-    bin_to_hex: function(){
-      return exec_or_errormessage( function(){ 
-        return PHP.bin2hex(this.original_code) 
-      }.bind(this) )
-    },
     to_unicode_escaped: function(){
       return exec_or_errormessage( function(){ 
         return Unicode.to_unicode_escaped(this.original_code) 
@@ -170,11 +150,6 @@ export default {
     charactor_ref_by_name: function(){
       return exec_or_errormessage( function(){ 
         return HTMLEntities.encode(this.original_code, { 'useNamedReferences': true }) 
-      }.bind(this) )
-    },
-    hex_to_bin: function(){
-      return exec_or_errormessage( function(){ 
-        return PHP.hex2bin(this.original_code) 
       }.bind(this) )
     },
     from_unicode_escaped: function(){
