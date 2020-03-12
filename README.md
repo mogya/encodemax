@@ -1,6 +1,6 @@
 # encodeMax
 
-> yet another [encodemaniax.com](http://www.encodemaniax.com)
+yet another [encodemaniax.com](http://www.encodemaniax.com), quickly on the fly.
 
 ## Build Setup
 

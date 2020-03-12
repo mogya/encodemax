@@ -2,7 +2,7 @@
   <div class="container mx-auto">
     <div class="mr-1">
       <div id="title-area" class="flex mb-6" >
-        <logo id="title-logo" class="flex-none" />
+        <span id="title-logo">encode Max</span>
         <input v-model="original_code" type="text" placeholder="input text to encode/decode."
           class="flex-grow shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
       </div>
@@ -30,7 +30,7 @@
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
-          unicode escape
+          unicode un-escape
           </label>
           <input type="text" 
             :value="from_unicode_escaped" />
@@ -82,7 +82,9 @@
       </div>
       <ul id="footer" class="flex">
         <li class="mr-6">
-          <a class="" href="https://twitter.com/mogya">@mogya</a>
+          <p class="text-sm">
+          developer: <a class="" href="https://twitter.com/mogya">@mogya</a>
+          </p>
         </li>
       </ul>
     </div>
@@ -100,7 +102,8 @@ function exec_or_errormessage(method){
     return method() 
   }
   catch(e){
-    return e.toString()
+    console.log(e.message)
+    return ''
   }
 }
 
@@ -170,10 +173,12 @@ export default {
 
 #title-logo{
   display: inline;
-  height: 2em;
   margin-right: 0.5em;
   vertical-align: text-bottom;
-  width: 2em;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  font-size: 24px;
+  width: 6em;
 }
 #title-area input{
   display: inline;
