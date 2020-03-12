@@ -14,7 +14,9 @@
   "dependencies": {
     "@nuxtjs/pwa": "^3.0.0-0",
     "he": "^1.2.0",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "qrcode": "^1.4.4",
+    "unicodechar-string": "^1.0.0"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^1.0.0",

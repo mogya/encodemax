@@ -35,6 +35,13 @@
           <input type="text" 
             :value="hex_to_bin" />
         </div>
+        <div class="result-line md:flex md:items-center mb-6" >
+          <label>
+          unicode escape
+          </label>
+          <input type="text" 
+            :value="from_unicode_escaped" />
+        </div>
       </div>
       <div id="encoded-area" class="border border-gray-100">
         <div class="result-line md:flex md:items-center mb-6" >
@@ -79,6 +86,13 @@
           <input type="text" 
             :value="bin_to_hex" />
         </div>
+        <div class="result-line md:flex md:items-center mb-6" >
+          <label>
+          unicode escape
+          </label>
+          <input type="text" 
+            :value="to_unicode_escaped" />
+        </div>
       </div>
       <ul id="footer" class="flex">
         <li class="mr-6">
@@ -91,8 +105,11 @@
 
 <script>
 import Logo from '~/components/Logo.vue'
-import { bin2hex, hex2bin } from '~/assets/js/php'
-import he from 'he'
+import PHP from '~/assets/js/php'
+import HTMLEntities from 'he'
+import QRCode from 'qrcode'
+import Unicode from '~/assets/js/unicode'
+
 function exec_or_errormessage(method){
   try{
     return method() 
@@ -120,12 +137,17 @@ export default {
     },
     charactor_deref: function(){
       return exec_or_errormessage( function(){ 
-        return he.decode(this.original_code) 
+        return HTMLEntities.decode(this.original_code) 
       }.bind(this) )
     },
     bin_to_hex: function(){
       return exec_or_errormessage( function(){ 
-        return bin2hex(this.original_code) 
+        return PHP.bin2hex(this.original_code) 
+      }.bind(this) )
+    },
+    to_unicode_escaped: function(){
+      return exec_or_errormessage( function(){ 
+        return Unicode.to_unicode_escaped(this.original_code) 
       }.bind(this) )
     },
 
@@ -137,22 +159,27 @@ export default {
     },
     charactor_ref_by_10: function(){
       return exec_or_errormessage( function(){ 
-        return he.encode(this.original_code, { 'decimal': true }) 
+        return HTMLEntities.encode(this.original_code, { 'decimal': true }) 
       }.bind(this) )
     },
     charactor_ref_by_16: function(){
       return exec_or_errormessage( function(){ 
-        return he.encode(this.original_code, {}) 
+        return HTMLEntities.encode(this.original_code, {}) 
       }.bind(this) )
     },
     charactor_ref_by_name: function(){
       return exec_or_errormessage( function(){ 
-        return he.encode(this.original_code, { 'useNamedReferences': true }) 
+        return HTMLEntities.encode(this.original_code, { 'useNamedReferences': true }) 
       }.bind(this) )
     },
     hex_to_bin: function(){
       return exec_or_errormessage( function(){ 
-        return hex2bin(this.original_code) 
+        return PHP.hex2bin(this.original_code) 
+      }.bind(this) )
+    },
+    from_unicode_escaped: function(){
+      return exec_or_errormessage( function(){ 
+        return Unicode.from_unicode_escaped(this.original_code) 
       }.bind(this) )
     },
   }
