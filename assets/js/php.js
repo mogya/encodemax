@@ -52,10 +52,8 @@ function hex2bin(str) {
   var c2;
 
   while (len > 1) {
-    h1 = str.charAt(i++);
-    c1 = h1.charCodeAt(0);
-    h2 = str.charAt(i++);
-    c2 = h2.charCodeAt(0);
+    c1 = str.charAt(i++).charCodeAt(0);
+    c2 = str.charAt(i++).charCodeAt(0);
 
     rv += String.fromCharCode((_hex2bin[c1] << 4) + _hex2bin[c2]);
     len -= 2;
@@ -64,5 +62,4 @@ function hex2bin(str) {
   return rv;
 }
 
-exports.bin2hex = bin2hex;
-exports.hex2bin = hex2bin;
+export default { bin2hex, hex2bin }
