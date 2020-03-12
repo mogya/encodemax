@@ -1,6 +1,6 @@
-# encdecgeek
+# encodeMax
 
-> My smashing Nuxt.js project
+> yet another [encodemaniax.com](http://www.encodemaniax.com)
 
 ## Build Setup
 
@@ -20,4 +20,4 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-# encdecgeek
+
