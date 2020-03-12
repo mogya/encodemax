@@ -1,65 +1,37 @@
-// $CVSHeader: _freebeer/www/lib/bin2hex.js,v 1.2 2004/03/07 17:51:35 ross Exp $
+function bin2hex(s) {
+  // https://github.com/kvz/locutus/blob/master/src/php/strings/bin2hex.js
+  var i
+  var l
+  var o = ''
+  var n
 
-// Copyright (c) 2002-2004, Ross Smith.  All rights reserved.
-// Licensed under the BSD or LGPL License. See license.txt for details.
+  s += ''
 
-var _bin2hex = [
-  '0', '1', '2', '3', '4', '5', '6', '7',
-  '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
-];
-
-var _hex2bin = [
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 0, 0, // 0-9
-  0, 10, 11, 12, 13, 14, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, // A-F
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 10, 11, 12, 13, 14, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, // a-f
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-];
-
-function bin2hex(str) {
-  var len = str.length;
-  var rv = '';
-  var i = 0;
-  var c;
-
-  while (len-- > 0) {
-    c = str.charCodeAt(i++);
-
-    rv += _bin2hex[(c & 0xf0) >> 4];
-    rv += _bin2hex[(c & 0x0f)];
+  for (i = 0, l = s.length; i < l; i++) {
+    n = s.charCodeAt(i)
+      .toString(16)
+    o += n.length < 2 ? '0' + n : n
   }
 
-  return rv;
+  return o
 }
 
-function hex2bin(str) {
-  var len = str.length;
-  var rv = '';
-  var i = 0;
+function hex2bin(s) {
+  // https://github.com/kvz/locutus/blob/master/src/php/strings/hex2bin.js
+  var ret = []
+  var i = 0
+  var l
 
-  var c1;
-  var c2;
+  s += ''
 
-  while (len > 1) {
-    c1 = str.charAt(i++).charCodeAt(0);
-    c2 = str.charAt(i++).charCodeAt(0);
-
-    rv += String.fromCharCode((_hex2bin[c1] << 4) + _hex2bin[c2]);
-    len -= 2;
+  for (l = s.length; i < l; i += 2) {
+    var c = parseInt(s.substr(i, 1), 16)
+    var k = parseInt(s.substr(i + 1, 1), 16)
+    if (isNaN(c) || isNaN(k)) return false
+    ret.push((c << 4) | k)
   }
 
-  return rv;
+  return String.fromCharCode.apply(String, ret)
 }
 
 export default { bin2hex, hex2bin }
