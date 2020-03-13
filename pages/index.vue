@@ -4,7 +4,7 @@
       <div id="title-area" class="mb-6" >
         <span id="title-logo">encode Max</span>
         <textarea v-model="original_code" 
-          placeholder="エンコード・デコードしたい文字列を入れてね."
+          placeholder="エンコード・デコードしたい文字列を入力"
           class="inline md:block shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
       </div>
       <div id="decoded-area" class="border border-gray-100">
@@ -161,7 +161,12 @@ export default {
         return Unicode.from_unicode_escaped(this.original_code) 
       }.bind(this) )
     },
-  }
+  },
+  head () {
+    return {
+      title: 'EncodeMax. エンコードデコードをリアルタイムに',
+    }
+  },
 }
 </script>
 
