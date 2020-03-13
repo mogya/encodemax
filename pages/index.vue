@@ -1,38 +1,39 @@
 <template>
   <div class="container mx-auto">
-    <div class="mr-1">
-      <div id="title-area" class="flex mb-6" >
+    <div class="m-1">
+      <div id="title-area" class="mb-6" >
         <span id="title-logo">encode Max</span>
-        <input v-model="original_code" type="text" placeholder="input text to encode/decode."
-          class="flex-grow shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+        <textarea v-model="original_code" 
+          placeholder="エンコード・デコードしたい文字列を入れてね."
+          class="inline md:block shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
       </div>
       <div id="decoded-area" class="border border-gray-100">
         <div class="result-line" >
           <label>
             Base64 Decode
           </label>
-          <input type="text" 
+          <input type="text" readonly
             :value="base64_decode" />
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
             URL Decode
           </label>
-          <input type="text" 
+          <input type="text" readonly
             :value="url_decode" />
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
           HTML文字参照
           </label>
-          <input type="text" 
+          <input type="text" readonly
             :value="charactor_deref" />
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
           unicode un-escape
           </label>
-          <input type="text" 
+          <input type="text" readonly
             :value="from_unicode_escaped" />
         </div>
       </div>
@@ -41,42 +42,42 @@
           <label>
             Base64 Encode
           </label>
-          <input type="text" 
+          <input type="text" readonly
             :value="base64_encode" />
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
             URL Encode
           </label>
-          <input type="text" 
+          <input type="text" readonly
             :value="url_encode" />
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
           数値参照(10進)
           </label>
-          <input type="text" 
+          <input type="text" readonly
             :value="charactor_ref_by_10" />
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
           数値参照(16進)
           </label>
-          <input type="text" 
+          <input type="text" readonly
             :value="charactor_ref_by_16" />
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
           HTML実体参照
           </label>
-          <input type="text" 
+          <input type="text" readonly
             :value="charactor_ref_by_name" />
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
           unicode escape
           </label>
-          <input type="text" 
+          <input type="text" readonly
             :value="to_unicode_escaped" />
         </div>
       </div>
@@ -113,7 +114,7 @@ export default {
   },
   data () {
     return {
-      original_code: '%E6%97%A5%E6%9C%AC%E8%AA%9E'
+      original_code: ''
     }
   },
   computed: {
@@ -172,16 +173,15 @@ export default {
 */
 
 #title-logo{
-  display: inline;
-  margin-right: 0.5em;
-  vertical-align: text-bottom;
   font-family: "Times New Roman", Times, serif;
   font-style: italic;
   font-size: 24px;
   width: 6em;
 }
-#title-area input{
-  display: inline;
+#title-area span{
+  margin-right: 0.5em;
+}
+#title-area textarea{
 }
 .result-line{
   @apply mb-6 flex justify-center;
