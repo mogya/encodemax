@@ -119,10 +119,10 @@ export default {
   },
   computed: {
     base64_encode: function(){
-      return exec_or_errormessage( function(){ return window.btoa(this.original_code) }.bind(this) )
+      return exec_or_errormessage( function(){ return window.btoa(unescape(encodeURIComponent(this.original_code))) }.bind(this) )
     },
     base64_decode: function(){
-      return exec_or_errormessage( function(){ return window.atob(this.original_code) }.bind(this) )
+      return exec_or_errormessage( function(){ return decodeURIComponent(escape(window.atob(this.original_code))) }.bind(this) )
     },
     charactor_deref: function(){
       return exec_or_errormessage( function(){ 
