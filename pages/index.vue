@@ -81,15 +81,19 @@
             :value="to_unicode_escaped" />
         </div>
       </div>
+      <p class="text-sm text-gray-900">使ってみた感想を聞かせてください！<br />
+        匿名/非公開でも回答できます<br />
+        → <a class="underline" href="https://ikens.net/mogya/encodemax?v=1">ikens.net/encodemax</a>
+      </p>
       <ul id="footer" class="text-right">
         <li class="">
-          <p class="text-sm text-gray-400">
-          <a class="" href="https://twitter.com/mogya">developed by @mogya</a>
+          <p class="text-sm text-gray-500">
+          developed by <a class="underline" href="https://twitter.com/mogya">@mogya</a>
           </p>
         </li>
         <li class="">
-          <p class="text-sm text-gray-400">
-          <a class="" href="https://www.amazon.co.jp/hz/wishlist/ls/THOKUF6CE3VD?&sort=default">欲しいものリスト</a>
+          <p class="text-sm text-gray-500">
+          <a class="underline" href="https://www.amazon.co.jp/hz/wishlist/ls/THOKUF6CE3VD?&sort=default">欲しいものリスト</a>
           </p>
         </li>
       </ul>
