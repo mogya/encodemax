@@ -12,28 +12,28 @@
           <label>
             Base64 Decode
           </label>
-          <input type="text" readonly
+          <input type="text" readonly v-on:click="on_click"
             :value="base64_decode" />
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
             URL Decode
           </label>
-          <input type="text" readonly
+          <input type="text" readonly v-on:click="on_click"
             :value="url_decode" />
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
           HTML文字参照
           </label>
-          <input type="text" readonly
+          <input type="text" readonly v-on:click="on_click"
             :value="charactor_deref" />
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
           unicode un-escape
           </label>
-          <input type="text" readonly
+          <input type="text" readonly v-on:click="on_click"
             :value="from_unicode_escaped" />
         </div>
       </div>
@@ -42,42 +42,42 @@
           <label>
             Base64 Encode
           </label>
-          <input type="text" readonly
+          <input type="text" readonly v-on:click="on_click"
             :value="base64_encode" />
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
             URL Encode
           </label>
-          <input type="text" readonly
+          <input type="text" readonly v-on:click="on_click"
             :value="url_encode" />
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
           数値参照(10進)
           </label>
-          <input type="text" readonly
+          <input type="text" readonly v-on:click="on_click"
             :value="charactor_ref_by_10" />
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
           数値参照(16進)
           </label>
-          <input type="text" readonly
+          <input type="text" readonly v-on:click="on_click"
             :value="charactor_ref_by_16" />
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
           HTML実体参照
           </label>
-          <input type="text" readonly
+          <input type="text" readonly v-on:click="on_click"
             :value="charactor_ref_by_name" />
         </div>
         <div class="result-line md:flex md:items-center mb-6" >
           <label>
           unicode escape
           </label>
-          <input type="text" readonly
+          <input type="text" readonly v-on:click="on_click"
             :value="to_unicode_escaped" />
         </div>
       </div>
@@ -166,6 +166,11 @@ export default {
         return Unicode.from_unicode_escaped(this.original_code) 
       }.bind(this) )
     },
+  },
+  methods: {
+    on_click: function(event){
+      event.target.select();
+    }
   },
   head () {
     return {
