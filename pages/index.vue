@@ -81,10 +81,15 @@
             :value="to_unicode_escaped" />
         </div>
       </div>
-      <ul id="footer" class="flex">
-        <li class="mr-6">
-          <p class="text-sm">
-          developer: <a class="" href="https://twitter.com/mogya">@mogya</a>
+      <ul id="footer" class="text-right">
+        <li class="">
+          <p class="text-sm text-gray-400">
+          <a class="" href="https://twitter.com/mogya">developed by @mogya</a>
+          </p>
+        </li>
+        <li class="">
+          <p class="text-sm text-gray-400">
+          <a class="" href="https://www.amazon.co.jp/hz/wishlist/ls/THOKUF6CE3VD?&sort=default">欲しいものリスト</a>
           </p>
         </li>
       </ul>
