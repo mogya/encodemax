@@ -1,6 +1,6 @@
 # encodeMax
 
-yet another [encodemaniax.com](http://www.encodemaniax.com), quickly on the fly.
+encode, decode, quickly on the fly. [https://encodemax.com/](https://encodemax.com/)
 
 ## Build Setup
 
@@ -18,6 +18,3 @@ $ yarn start
 # generate static project
 $ yarn generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-
