@@ -93,6 +93,11 @@
         </li>
         <li class="">
           <p class="text-sm text-gray-500">
+          source: <a class="underline" href="https://github.com/mogya/encodemax">github.com/mogya/encodemax</a>
+          </p>
+        </li>
+        <li class="">
+          <p class="text-sm text-gray-500">
           <a class="underline" href="https://www.amazon.co.jp/hz/wishlist/ls/THOKUF6CE3VD?&sort=default">欲しいものリスト</a>
           </p>
         </li>
