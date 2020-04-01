@@ -8,78 +8,18 @@
           class="inline md:block shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
       </div>
       <div id="decoded-area" class="border border-gray-100">
-        <div class="result-line" >
-          <label>
-            Base64 Decode
-          </label>
-          <input type="text" readonly v-on:click="on_click"
-            :value="base64_decode" />
-        </div>
-        <div class="result-line md:flex md:items-center mb-6" >
-          <label>
-            URL Decode
-          </label>
-          <input type="text" readonly v-on:click="on_click"
-            :value="url_decode" />
-        </div>
-        <div class="result-line md:flex md:items-center mb-6" >
-          <label>
-          HTML文字参照
-          </label>
-          <input type="text" readonly v-on:click="on_click"
-            :value="charactor_deref" />
-        </div>
-        <div class="result-line md:flex md:items-center mb-6" >
-          <label>
-          unicode un-escape
-          </label>
-          <input type="text" readonly v-on:click="on_click"
-            :value="from_unicode_escaped" />
-        </div>
+        <coded title="Base64 Decode" :value="base64_decode" />
+        <coded title="URL Decode" :value="url_decode" />
+        <coded title="HTML文字参照" :value="charactor_deref" />
+        <coded title="unicode un-escape" :value="from_unicode_escaped" />
       </div>
       <div id="encoded-area" class="border border-gray-100">
-        <div class="result-line md:flex md:items-center mb-6" >
-          <label>
-            Base64 Encode
-          </label>
-          <input type="text" readonly v-on:click="on_click"
-            :value="base64_encode" />
-        </div>
-        <div class="result-line md:flex md:items-center mb-6" >
-          <label>
-            URL Encode
-          </label>
-          <input type="text" readonly v-on:click="on_click"
-            :value="url_encode" />
-        </div>
-        <div class="result-line md:flex md:items-center mb-6" >
-          <label>
-          数値参照(10進)
-          </label>
-          <input type="text" readonly v-on:click="on_click"
-            :value="charactor_ref_by_10" />
-        </div>
-        <div class="result-line md:flex md:items-center mb-6" >
-          <label>
-          数値参照(16進)
-          </label>
-          <input type="text" readonly v-on:click="on_click"
-            :value="charactor_ref_by_16" />
-        </div>
-        <div class="result-line md:flex md:items-center mb-6" >
-          <label>
-          HTML実体参照
-          </label>
-          <input type="text" readonly v-on:click="on_click"
-            :value="charactor_ref_by_name" />
-        </div>
-        <div class="result-line md:flex md:items-center mb-6" >
-          <label>
-          unicode escape
-          </label>
-          <input type="text" readonly v-on:click="on_click"
-            :value="to_unicode_escaped" />
-        </div>
+        <coded title="Base64 Encode" :value="base64_encode" />
+        <coded title="URL Encode" :value="url_encode" />
+        <coded title="数値参照(10進)" :value="charactor_ref_by_10" />
+        <coded title="数値参照(16進)" :value="charactor_ref_by_16" />
+        <coded title="HTML実体参照" :value="charactor_ref_by_name" />
+        <coded title="unicode escape" :value="to_unicode_escaped" />
       </div>
       <p class="text-sm text-gray-900">使ってみた感想を聞かせてください！<br />
         匿名/非公開でも回答できます<br />
@@ -107,7 +47,7 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Coded from '~/components/Coded.vue'
 import HTMLEntities from 'he'
 import QRCode from 'qrcode'
 import Unicode from '~/assets/js/unicode'
@@ -124,7 +64,7 @@ function exec_or_errormessage(method){
 
 export default {
   components: {
-    Logo
+    Coded
   },
   data () {
     return {
@@ -176,11 +116,6 @@ export default {
       }.bind(this) )
     },
   },
-  methods: {
-    on_click: function(event){
-      event.target.select();
-    }
-  },
   head () {
     return {
       title: 'EncodeMax. エンコードデコードをリアルタイムに',
@@ -206,16 +141,5 @@ export default {
   margin-right: 0.5em;
 }
 #title-area textarea{
-}
-.result-line{
-  @apply mb-6 flex justify-center;
-}
-.result-line label{
-  @apply block text-gray-500 font-bold text-right pr-4;
-  width: 10em;
-  line-height: 2.25;
-}
-.result-line input{
-  @apply flex-1 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight;
 }
 </style>
