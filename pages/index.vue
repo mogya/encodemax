@@ -3,17 +3,18 @@
     <div class="m-1">
       <div id="title-area" class="mb-6" >
         <span id="title-logo">encode Max</span>
-        <textarea v-model="original_code" 
-          placeholder="エンコード・デコードしたい文字列を入力"
-          class="inline md:block shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+        <textarea id="input-textarea" v-model="original_code" 
+          placeholder="エンコード・デコードしたい文字列を入力" autofocus="autofocus"
+          class="inline md:block shadow border border-gray-700 rounded w-full py-2 px-3 text-black-700 leading-tight focus:outline-none focus:shadow-outline" >
+        </textarea>
       </div>
-      <div id="decoded-area" class="border border-gray-100">
+      <div id="decoded-area" >
         <coded title="Base64 Decode" :value="base64_decode" />
         <coded title="URL Decode" :value="url_decode" />
         <coded title="HTML文字参照" :value="charactor_deref" />
         <coded title="unicode un-escape" :value="from_unicode_escaped" />
       </div>
-      <div id="encoded-area" class="border border-gray-100">
+      <div id="encoded-area" >
         <coded title="Base64 Encode" :value="base64_encode" />
         <coded title="URL Encode" :value="url_encode" />
         <coded title="数値参照(10進)" :value="charactor_ref_by_10" />
