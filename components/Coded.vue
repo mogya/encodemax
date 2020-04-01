@@ -64,8 +64,8 @@ export default {
 }
 .result-line span{
   position: absolute;
-  top: -1em;
-  right: -20px;
+  top: 0;
+  right: 0;
   font-size: 8pt;
   background: white;
 }
