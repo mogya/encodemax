@@ -1,13 +1,15 @@
 <template>
-  <div class="container mx-auto">
-    <div class="m-1">
-      <div id="title-area" class="mb-6" >
+  <div class="" >
+    <div id="header" class="container">
+      <div id="title-area" >
         <span id="title-logo">encode Max</span>
         <textarea id="input-textarea" v-model="original_code" 
           placeholder="エンコード・デコードしたい文字列を入力" autofocus="autofocus"
           class="inline md:block shadow border border-gray-700 rounded w-full py-2 px-3 text-black-700 leading-tight focus:outline-none focus:shadow-outline" >
         </textarea>
       </div>
+    </div>
+    <div id="main" class="container">
       <div id="decoded-area" >
         <coded title="Base64 Decode" :value="base64_decode" />
         <coded title="URL Decode" :value="url_decode" />
@@ -126,12 +128,18 @@ export default {
 </script>
 
 <style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-  @apply min-h-screen flex justify-center items-center text-center mx-auto;
+#header{
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  left: 0;
+  top: 0;
+  background: #FFF;
 }
-*/
-
+#main{
+  position: absolute;
+  top: 100px;
+}
 #title-logo{
   font-family: "Times New Roman", Times, serif;
   font-style: italic;
