@@ -138,7 +138,7 @@ export default {
 }
 #main{
   position: absolute;
-  top: 100px;
+  top: 120px;
 }
 #title-logo{
   font-family: "Times New Roman", Times, serif;
