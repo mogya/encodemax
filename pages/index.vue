@@ -1,52 +1,46 @@
-<template>
-  <div class="" >
-    <div id="header" class="container">
-      <div id="title-area" >
-        <span id="title-logo">encode Max</span>
-        <textarea id="input-textarea" v-model="original_code" 
-          placeholder="エンコード・デコードしたい文字列を入力" autofocus="autofocus"
-          class="inline md:block shadow border border-gray-700 rounded w-full py-2 px-3 text-black-700 leading-tight focus:outline-none focus:shadow-outline" >
-        </textarea>
-      </div>
-    </div>
-    <div id="main" class="container">
-      <div id="decoded-area" >
-        <coded title="Base64 Decode" :value="base64_decode" />
-        <coded title="URL Decode" :value="url_decode" />
-        <coded title="HTML文字参照" :value="charactor_deref" />
-        <coded title="unicode un-escape" :value="from_unicode_escaped" />
-      </div>
-      <div id="encoded-area" >
-        <coded title="Base64 Encode" :value="base64_encode" />
-        <coded title="URL Encode" :value="url_encode" />
-        <coded title="数値参照(10進)" :value="charactor_ref_by_10" />
-        <coded title="数値参照(16進)" :value="charactor_ref_by_16" />
-        <coded title="HTML実体参照" :value="charactor_ref_by_name" />
-        <coded title="unicode escape" :value="to_unicode_escaped" />
-      </div>
-      <p class="text-sm text-gray-900">使ってみた感想を聞かせてください！<br />
-        匿名/非公開でも回答できます<br />
-        → <a class="underline" href="https://ikens.net/mogya/encodemax?v=1">ikens.net/encodemax</a>
-      </p>
-      <ul id="footer" class="text-right">
-        <li class="">
-          <p class="text-sm text-gray-500">
-          developed by <a class="underline" href="https://twitter.com/mogya">@mogya</a>
-          </p>
-        </li>
-        <li class="">
-          <p class="text-sm text-gray-500">
-          source: <a class="underline" href="https://github.com/mogya/encodemax">github.com/mogya/encodemax</a>
-          </p>
-        </li>
-        <li class="">
-          <p class="text-sm text-gray-500">
-          <a class="underline" href="https://www.amazon.co.jp/hz/wishlist/ls/THOKUF6CE3VD?&sort=default">欲しいものリスト</a>
-          </p>
-        </li>
-      </ul>
-    </div>
-  </div>
+<template lang="pug">
+div
+  #header.container
+    #title-area
+      span#title-logo encode Max
+      textarea#input-textarea(
+        v-model="original_code", 
+        placeholder="エンコード・デコードしたい文字列を入力", 
+        autofocus="autofocus", 
+        class="inline shadow border border-gray-700 rounded w-full py-2 px-3 text-black-700 leading-tight md:block focus:outline-none focus:shadow-outline"
+      )
+  #main.container
+    #decoded-area
+      coded(title="Base64 Decode", :value="base64_decode")
+      coded(title="URL Decode", :value="url_decode")
+      coded(title="HTML文字参照", :value="charactor_deref")
+      coded(title="unicode un-escape", :value="from_unicode_escaped")
+    #encoded-area
+      coded(title="Base64 Encode", :value="base64_encode")
+      coded(title="URL Encode", :value="url_encode")
+      coded(title="数値参照(10進)", :value="charactor_ref_by_10")
+      coded(title="数値参照(16進)", :value="charactor_ref_by_16")
+      coded(title="HTML実体参照", :value="charactor_ref_by_name")
+      coded(title="unicode escape", :value="to_unicode_escaped")
+    p.text-sm.text-gray-900
+      | 使ってみた感想を聞かせてください！
+      br
+      |         匿名/非公開でも回答できます
+      br
+      |         → 
+      a.underline(href="https://ikens.net/mogya/encodemax?v=1") ikens.net/encodemax
+    ul#footer.text-right
+      li
+        p.text-sm.text-gray-500
+          | developed by 
+          a.underline(href="https://twitter.com/mogya") @mogya
+      li
+        p.text-sm.text-gray-500
+          | source: 
+          a.underline(href="https://github.com/mogya/encodemax") github.com/mogya/encodemax
+      li
+        p.text-sm.text-gray-500
+          a.underline(href="https://www.amazon.co.jp/hz/wishlist/ls/THOKUF6CE3VD?&sort=default") 欲しいものリスト
 </template>
 
 <script>
