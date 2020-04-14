@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@nuxtjs/pwa": "^3.0.0-0",
+    "encoding-japanese": "^1.0.30",
     "he": "^1.2.0",
     "nuxt": "^2.0.0",
     "pug": "^2.0.4",

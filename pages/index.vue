@@ -13,11 +13,13 @@ div
     #decoded-area
       coded(title="Base64 Decode", :value="base64_decode")
       coded(title="URL Decode", :value="url_decode")
+      coded(title="URL Decode(SJIS)", :value="url_decode_sjis")
       coded(title="HTML文字参照", :value="charactor_deref")
       coded(title="unicode un-escape", :value="from_unicode_escaped")
     #encoded-area
       coded(title="Base64 Encode", :value="base64_encode")
       coded(title="URL Encode", :value="url_encode")
+      coded(title="URL Encode(SJIS)", :value="url_encode_sjis")
       coded(title="数値参照(10進)", :value="charactor_ref_by_10")
       coded(title="数値参照(16進)", :value="charactor_ref_by_16")
       coded(title="HTML実体参照", :value="charactor_ref_by_name")
@@ -48,6 +50,7 @@ import Coded from '~/components/Coded.vue'
 import HTMLEntities from 'he'
 import QRCode from 'qrcode'
 import Unicode from '~/assets/js/unicode'
+import Encoding from 'encoding-japanese'
 
 function exec_or_errormessage(method){
   try{
@@ -89,8 +92,28 @@ export default {
     url_encode: function(){
       return exec_or_errormessage( function(){ return encodeURIComponent(this.original_code) }.bind(this) )
     },
+    url_encode_sjis: function(){
+      return exec_or_errormessage( function(){ 
+        const unicode_array = Encoding.stringToCode(this.original_code)
+        const sjis_array = Encoding.convert(
+          unicode_array,
+          { from: 'UNICODE', to: 'SJIS' }
+        );
+        return Encoding.urlEncode(sjis_array)
+      }.bind(this) )
+    },
     url_decode: function(){
       return exec_or_errormessage( function(){ return decodeURIComponent(this.original_code) }.bind(this) )
+    },
+    url_decode_sjis: function(){
+      return exec_or_errormessage( function(){ 
+        const sjis_array = Encoding.urlDecode(this.original_code)
+        const unicode_array = Encoding.convert(
+          sjis_array,
+          { from: 'SJIS', to: 'UNICODE' }
+        )
+        return Encoding.codeToString(unicode_array)
+      }.bind(this) )
     },
     charactor_ref_by_10: function(){
       return exec_or_errormessage( function(){ 

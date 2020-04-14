@@ -59,5 +59,11 @@ export default {
     */
     extend (config, ctx) {
     }
-  }
+  },
+  /*
+  ** Dev server
+  */
+  server: {
+    port: 4000
+  }  
 }
