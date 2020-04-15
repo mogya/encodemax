@@ -1,15 +1,15 @@
 <template lang="pug">
 div
-  #header.container
+  #header.container.fixed.right-0.left-0.top-0.bg-white.px-1.z-10
     #title-area
-      span#title-logo encode Max
+      span#title-logo.font-serif.italic.text-3xl.w-8 encode Max
       textarea#input-textarea(
         v-model="original_code", 
         placeholder="エンコード・デコードしたい文字列を入力", 
         autofocus="autofocus", 
         class="inline shadow border border-gray-700 rounded w-full py-2 px-3 text-black-700 leading-tight md:block focus:outline-none focus:shadow-outline"
       )
-  #main.container
+  #main.container.absolute(class="px-1 lg:px-2 xl:px-2")
     #decoded-area
       coded(title="Base64 Decode", :value="base64_decode")
       coded(title="URL Decode", :value="url_decode")
@@ -24,25 +24,26 @@ div
       coded(title="数値参照(16進)", :value="charactor_ref_by_16")
       coded(title="HTML実体参照", :value="charactor_ref_by_name")
       coded(title="unicode escape", :value="to_unicode_escaped")
-    p.text-sm.text-gray-900
-      | 使ってみた感想を聞かせてください！
-      br
-      |         匿名/非公開でも回答できます
-      br
-      |         → 
-      a.underline(href="https://ikens.net/mogya/encodemax?v=1") ikens.net/encodemax
-    ul#footer.text-right
-      li
-        p.text-sm.text-gray-500
-          | developed by 
-          a.underline(href="https://twitter.com/mogya") @mogya
-      li
-        p.text-sm.text-gray-500
-          | source: 
-          a.underline(href="https://github.com/mogya/encodemax") github.com/mogya/encodemax
-      li
-        p.text-sm.text-gray-500
-          a.underline(href="https://www.amazon.co.jp/hz/wishlist/ls/THOKUF6CE3VD?&sort=default") 欲しいものリスト
+    ul#footer(class="px-1 lg:px-2 xl:px-2")
+      p.text-sm.text-gray-900
+        | 使ってみた感想を聞かせてください！
+        br
+        |         匿名/非公開でも回答できます
+        br
+        |         → 
+        a.underline(href="https://ikens.net/mogya/encodemax?v=1") ikens.net/encodemax
+      .text-right
+        li
+          p.text-sm.text-gray-500
+            | developed by 
+            a.underline(href="https://twitter.com/mogya") @mogya
+        li
+          p.text-sm.text-gray-500
+            | source: 
+            a.underline(href="https://github.com/mogya/encodemax") github.com/mogya/encodemax
+        li
+          p.text-sm.text-gray-500
+            a.underline(href="https://www.amazon.co.jp/hz/wishlist/ls/THOKUF6CE3VD?&sort=default") 欲しいものリスト
 </template>
 
 <script>
@@ -145,26 +146,8 @@ export default {
 </script>
 
 <style>
-#header{
-  position: fixed;
-  z-index: 1;
-  right: 0;
-  left: 0;
-  top: 0;
-  background: #FFF;
-}
 #main{
-  position: absolute;
-  top: 120px;
-}
-#title-logo{
-  font-family: "Times New Roman", Times, serif;
-  font-style: italic;
-  font-size: 24px;
-  width: 6em;
-}
-#title-area span{
-  margin-right: 0.5em;
+  top: 120px
 }
 #title-area textarea{
 }

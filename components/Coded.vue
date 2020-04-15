@@ -1,5 +1,5 @@
 <template>
-  <div class="result-line md:flex md:items-center mb-6" >
+  <div class="result-line md:flex md:items-center mb-8" >
     <label>
       {{title}}
     </label>
@@ -48,19 +48,19 @@ export default {
 </script>
 <style scoped>
 .result-line{
-  @apply mb-6 flex justify-center;
+  @apply mb-3 flex justify-center;
   position: relative;
 }
 .result-line label{
-  @apply block text-gray-500 font-bold text-right pr-4;
+  @apply block text-gray-500 font-bold text-right .text-sm .mr-1;
   width: 10em;
   line-height: 2.25;
 }
 .result-line input{
-  @apply flex-1 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight;
+  @apply flex-1 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-1 px-1 text-gray-700 leading-tight;
 }
 .result-line button{
-  @apply bg-transparent font-semibold py-2 px-4 border rounded;
+  @apply bg-transparent font-semibold py-1 px-3 border rounded;
 }
 .result-line span{
   position: absolute;
