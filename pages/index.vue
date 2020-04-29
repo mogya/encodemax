@@ -17,6 +17,7 @@ div
         )
         button#clear-btn(
           v-on:click="clear"
+          v-if="show_clear_button"
           class="py-2 px-4 mx-2 my-4 absolute right-0 bottom-0 bg-transparent hover:shadow-outline text-black-700 font-semibold border focus:outline-none rounded"
         )
           <font-awesome-icon icon="eraser" />
@@ -87,6 +88,9 @@ export default {
     }
   },
   computed: {
+    show_clear_button: function(){
+      return this.original_code != ''
+    },
     base64_encode: function(){
       return exec_or_errormessage( function(){ return window.btoa(unescape(encodeURIComponent(this.original_code))) }.bind(this) )
     },
@@ -153,7 +157,8 @@ export default {
   },
   methods: {
     clear: function(event){
-     this.original_code = "";
+      this.original_code = "";
+      document.querySelector("#textarea textarea").focus(); 
     }
   },
   head () {
