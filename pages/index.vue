@@ -2,13 +2,24 @@
 div
   #header.container.fixed.right-0.left-0.top-0.bg-white.px-1.z-10
     #title-area
-      span#title-logo.font-serif.italic.text-3xl.w-8 encode Max
-      textarea#input-textarea(
-        v-model="original_code", 
-        placeholder="エンコード・デコードしたい文字列を入力", 
-        autofocus="autofocus", 
-        class="inline shadow border border-gray-700 rounded w-full py-2 px-3 text-black-700 leading-tight md:block focus:outline-none focus:shadow-outline"
-      )
+      span#title-logo.font-serif.text-3xl.w-8
+        span.italic &amp;&nbsp;
+        span.italic encode
+        span.italic &nbsp;
+        span.italic Max
+        span.italic &nbsp;%
+      #textarea
+        textarea(
+          v-model="original_code", 
+          placeholder="エンコード・デコードしたい文字列を入力", 
+          autofocus="autofocus", 
+          class="inline shadow border border-gray-700 rounded w-full py-2 px-3 text-black-700 leading-tight md:block focus:outline-none focus:shadow-outline"
+        )
+        button#clear-btn(
+          v-on:click="clear"
+          class="py-2 px-4 mx-2 my-4 absolute right-0 bottom-0 bg-transparent hover:shadow-outline text-black-700 font-semibold border focus:outline-none rounded"
+        )
+          <font-awesome-icon icon="eraser" />
   #main.container.absolute(class="px-1 lg:px-2 xl:px-2")
     #decoded-area
       coded(title="Base64 Decode", :value="base64_decode")
@@ -52,6 +63,9 @@ import HTMLEntities from 'he'
 import QRCode from 'qrcode'
 import Unicode from '~/assets/js/unicode'
 import Encoding from 'encoding-japanese'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faEraser } from '@fortawesome/free-solid-svg-icons'
+library.add(faEraser)
 
 function exec_or_errormessage(method){
   try{
@@ -136,6 +150,11 @@ export default {
         return Unicode.from_unicode_escaped(this.original_code) 
       }.bind(this) )
     },
+  },
+  methods: {
+    clear: function(event){
+     this.original_code = "";
+    }
   },
   head () {
     return {
