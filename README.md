@@ -18,3 +18,7 @@ $ yarn start
 # generate static project
 $ yarn generate
 ```
+
+## deploy
+
+netlify.com で配信しています。MasterブランチをGithubにPushすると自動で更新されます
